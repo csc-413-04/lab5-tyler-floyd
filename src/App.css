@@ -66,5 +66,23 @@ html, body{
 
 .page-content{
   width: 900px;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
+  height: 70%;
+}
+
+.messages{
+  padding: 20px;
+  overflow-y: scroll;
+  flex-grow: 4;
+  background-color: rgb(180, 187, 194);
+}
+
+.message{
+  background-color: #eaeaea
+}
+
+.onClick{
+  padding-left: 10px;
 }
