@@ -5,6 +5,32 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import {importMessage} from './redux/actions';
+
+
+const websocket = new WebSocket('ws://localhost:1234/ws');
+
+websocket.onopen = () => {
+    console.log('ws has connected')
+}
+
+websocket.onmessage = (e) => {
+    const data = JSON.parse(e.data);
+    switch(data.type){
+        case 'MESSAGE_BROADCAST':
+            store.dispatch(importMessage(data.message));
+            break;
+    }
+}
+
+websocket.onerror = (e) => {
+    console.log(e);
+}
+
+websocket.onclose = (e) => {
+    console.log('ws closed')
+    console.log(e);
+}
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

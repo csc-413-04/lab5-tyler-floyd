@@ -47,7 +47,7 @@ class HomePage extends Component {
                 method: 'POST',
                 url: '/api/sendmessage',
                 data:{
-                    message: this.state.messageValue(),
+                    message: this.state.messageValue,
                 }
             })
             .then((res)=>{
